@@ -16,24 +16,36 @@ app.use(bodyParser.json());
 app.post('/marker', (req, res) => {
     try {
         console.log(req.body.name);
-        const {lat, lan, name, note} = req.body;
-        sql = "INSERT INTO marker(lat, lan, name, note) VALUES (?,?,?,?)"
-        db.run(sql, [lat, lan, name, note], (err)=>{
-            if(err) return res.json({status: 300, success: false, error:err});
+        const { lat, lan, name, note } = req.body;
+        sql = "INSERT INTO marker(lat, lan, name, note) VALUES (?,?,?,?)";
+        db.run(sql, [lat, lan, name, note], function (err) {
+            if (err) {
+                return res.json({ status: 300, success: false, error: err });
+            }
+
             console.log("successful input", lat, lan, name, note);
-        });
-        return res.json({
-            status: 200,
-            success: true,
+            
+            // Fetch the inserted marker from the database
+            db.get("SELECT * FROM marker WHERE ROWID = ?", this.lastID, (err, row) => {
+                if (err) {
+                    return res.json({ status: 400, success: false, error: err });
+                }
+
+                return res.json({
+                    status: 201,
+                    success: true,
+                    marker: row,
+                });
+            });
         });
     } catch (error) {
         return res.json({
             status: 400,
             success: false,
-
         });
     }
 });
+
 const url = require('url');
 //get request
 app.get("/marker", (req, res)=>{
