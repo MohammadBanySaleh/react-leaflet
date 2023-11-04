@@ -39,7 +39,7 @@ function MapComponent() {
       console.log("slected markkkker");
       console.log(selectedMarker);
     }
-    
+
   };
 
   useEffect(() => {
@@ -153,10 +153,10 @@ function MapComponent() {
           } icon={customIcon}
             draggable={draggable}
             eventHandlers={eventHandlers}
-            // eventHandlers={{
-            //   click: () => handleSelectedMarker(marker),
-              
-            // }}
+          // eventHandlers={{
+          //   click: () => handleSelectedMarker(marker),
+
+          // }}
 
           >
             <Popup>
@@ -176,61 +176,124 @@ function MapComponent() {
         {/* </MarkerClusterGroup> */}
 
         <MapEvents />
-      </MapContainer>
-      <form>
-        <input
-          type="text"
-          placeholder="Latitude"
-          value={newMarker.lat}
-          onChange={(e) => setNewMarker({ ...newMarker, lat: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Longitude"
-          value={newMarker.lan}
-          onChange={(e) => setNewMarker({ ...newMarker, lan: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Name"
-          value={newMarker.name}
-          onChange={(e) => setNewMarker({ ...newMarker, name: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Note"
-          value={newMarker.note}
-          onChange={(e) => setNewMarker({ ...newMarker, note: e.target.value })}
-        />
-        <button type="button" onClick={handleAddMarker}>Add marker</button>
-      </form>
-      <form>
-        <input
-          type="text"
-          placeholder="Latitude"
-          value={selectedMarker ? selectedMarker.lat : ""}
-          onChange={(e) => setSelectedMarker({ ...selectedMarker, lat: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Longitude"
-          value={selectedMarker ? selectedMarker.lan : ""}
-          onChange={(e) => setSelectedMarker({ ...selectedMarker, lan: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Name"
-          value={selectedMarker ? selectedMarker.name : ""}
-          onChange={(e) => setSelectedMarker({ ...selectedMarker, name: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Note"
-          value={selectedMarker ? selectedMarker.note : ""}
-          onChange={(e) => setSelectedMarker({ ...selectedMarker, note: e.target.value })}
-        />
-        <button type="button" onClick={handleUpdateMarker}>Update marker</button>
-      </form>
+      </MapContainer><br></br><br></br>
+      <div className="row">
+        <div className="col border-end">
+          <h3>Adding Marker</h3>
+          <small style={{marginBottom:"20px"}}>Click on any place on the map to get the coordinates</small>
+          <form className="mb-3">
+            <div className="mb-3">
+              <label htmlFor="latitude" className="form-label">Latitude</label>
+              <input
+                type="text"
+                className="form-control"
+                id="latitude"
+                placeholder="Latitude"
+                value={newMarker.lat}
+                onChange={(e) => setNewMarker({ ...newMarker, lat: e.target.value })}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="longitude" className="form-label">Longitude</label>
+              <input
+                type="text"
+                className="form-control"
+                id="longitude"
+                placeholder="Longitude"
+                value={newMarker.lan}
+                onChange={(e) => setNewMarker({ ...newMarker, lan: e.target.value })}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                placeholder="Name"
+                value={newMarker.name}
+                onChange={(e) => setNewMarker({ ...newMarker, name: e.target.value })}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="note" className="form-label">Note</label>
+              <input
+                type="text"
+                className="form-control"
+                id="note"
+                placeholder="Note"
+                value={newMarker.note}
+                onChange={(e) => setNewMarker({ ...newMarker, note: e.target.value })}
+              />
+            </div>
+
+            <button type="button" className="btn btn-primary" onClick={handleAddMarker}>Add Marker</button>
+          </form>
+        </div>
+
+        <div className="col">
+          <h3>Editing Marker</h3>
+          <form className="mb-3">
+            <div className="mb-3">
+              <label htmlFor="selectedLatitude" className="form-label">Latitude</label>
+              <input
+                type="text"
+                className="form-control"
+                id="selectedLatitude"
+                placeholder="Latitude"
+                value={selectedMarker ? selectedMarker.lat : ""}
+                onChange={(e) => setSelectedMarker({ ...selectedMarker, lat: e.target.value })}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="selectedLongitude" className="form-label">Longitude</label>
+              <input
+                type="text"
+                className="form-control"
+                id="selectedLongitude"
+                placeholder="Longitude"
+                value={selectedMarker ? selectedMarker.lan : ""}
+                onChange={(e) => setSelectedMarker({ ...selectedMarker, lan: e.target.value })}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="selectedName" className="form-label">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="selectedName"
+                placeholder="Name"
+                value={selectedMarker ? selectedMarker.name : ""}
+                onChange={(e) => setSelectedMarker({ ...selectedMarker, name: e.target.value })}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="selectedNote" className="form-label">Note</label>
+              <input
+                type="text"
+                className="form-control"
+                id="selectedNote"
+                placeholder="Note"
+                value={selectedMarker ? selectedMarker.note : ""}
+                onChange={(e) => setSelectedMarker({ ...selectedMarker, note: e.target.value })}
+              />
+            </div>
+
+            <button type="button" className="btn btn-primary" onClick={handleUpdateMarker}>Update Marker</button>
+          </form>
+        </div>
+
+      </div>
+
+
+
+
     </div>
 
   );
